@@ -12,14 +12,14 @@ void UpdateBallPos(GameBall *gameball)
   // X axis
   if (gameball->IsDiffXNegative)
   {
-    if (gameball->ballShape->x > 0)
+    if (gameball->ballShape->x >= 0)
       diffX = -diffX;
     else
       gameball->IsDiffXNegative = false;
   }
   else 
   {
-    if (!(gameball->ballShape->x < gameball->borderX))
+    if (!(gameball->ballShape->x <= gameball->borderX - gameball->ballShape->width))
     {
       diffX = -diffX;
       gameball->IsDiffXNegative = true;
@@ -29,14 +29,14 @@ void UpdateBallPos(GameBall *gameball)
   // Y axis
   if (gameball->IsDiffYNegative)
   {
-    if (gameball->ballShape->y > 0)
+    if (gameball->ballShape->y >= 0)
       diffY = -diffY;
     else
       gameball->IsDiffYNegative = false;
   }
   else 
   {
-    if (!(gameball->ballShape->y < gameball->borderY))
+    if (!(gameball->ballShape->y <= gameball->borderY - gameball->ballShape->height))
     {
       diffY = -diffY;
       gameball->IsDiffYNegative = true;
