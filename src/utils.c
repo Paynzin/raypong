@@ -25,7 +25,7 @@ void UpdateBallPos(GameBall *gameball)
       gameball->IsDiffXNegative = true;
     }
   }
-  
+
   // Y axis
   if (gameball->IsDiffYNegative)
   {
@@ -45,4 +45,30 @@ void UpdateBallPos(GameBall *gameball)
 
   gameball->ballShape->x += diffX;
   gameball->ballShape->y += diffY;
+}
+
+Controls UpdateControls()
+{
+  Controls racketControls;
+  racketControls.LeftRacketMov = 0;
+  racketControls.RightRacketMov = 0;
+
+  // left racket 
+  if (IsKeyDown(LEFT_RACKET_MOV_UP)) racketControls.LeftRacketMov = 1;
+  if (IsKeyDown(LEFT_RACKET_MOV_DOWN)) racketControls.LeftRacketMov = -1;
+
+  // right racket 
+  if (IsKeyDown(RIGHT_RACKET_MOV_UP)) racketControls.RightRacketMov = 1;
+  if (IsKeyDown(RIGHT_RACKET_MOV_DOWN)) racketControls.RightRacketMov = -1;
+
+  return racketControls;
+}
+
+void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight)
+{
+  const int SPEED = 7;
+  Controls racketControls = UpdateControls();
+
+  racketLeft->y += racketControls.LeftRacketMov * SPEED;
+  racketRight->y += racketControls.RightRacketMov * SPEED;
 }

@@ -12,7 +12,8 @@ int main(void)
   const int winHeight = GetScreenHeight() / 2;
 
   SetWindowSize(winWidth, winHeight);
-  
+ 
+  // creates the ball
   Rectangle ballShape;
   // set the ball to be a square
   const float BALL_SIZE = 15.0;
@@ -30,14 +31,36 @@ int main(void)
   gameball.IsDiffYNegative = false;
   gameball.ballShape = &ballShape;
  
+  // creates the rackets
+  Rectangle racketLeft, racketRight;
+  
+  const float racketsSize = 15.0;
+  racketLeft.width = racketsSize * 1.5;
+  racketLeft.height = racketsSize * 5.0;
+
+  racketRight.width = racketsSize * 1.5;
+  racketRight.height = racketsSize * 5.0;
+
+  racketLeft.x = 0;
+  racketLeft.y = winHeight / 2; 
+
+  racketRight.x = winWidth - racketRight.width; 
+  racketRight.y = winHeight / 2;
+
   // the game's main loop
   while (!WindowShouldClose()) 
   {
     BeginDrawing();
     {
       ClearBackground(BLACK);
+      // draw the rackets
+      DrawRectangleRec(racketLeft, RAYWHITE);
+      DrawRectangleRec(racketRight, RAYWHITE);
+      // draw the ball
       DrawRectangleRec(ballShape, RAYWHITE);
-      UpdateBallPos(&gameball); 
+      // update stuff on the screen
+      UpdateBallPos(&gameball);
+      UpdateRackets(&racketLeft, &racketRight);
     }
     EndDrawing();
   }
