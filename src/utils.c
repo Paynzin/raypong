@@ -64,11 +64,43 @@ Controls UpdateControls()
   return racketControls;
 }
 
-void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight)
+void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight, int borderY)
 {
   const uint8_t SPEED = 7;
   Controls racketControls = UpdateControls();
-
-  racketLeft->y += racketControls.LeftRacketMov * SPEED;
-  racketRight->y += racketControls.RightRacketMov * SPEED;
+  
+  // left racket
+  if (!(racketLeft->y > borderY - racketLeft->height))
+  {
+    if ((racketLeft->y < 0))
+    {
+      if (racketControls.LeftRacketMov > 0)
+        racketLeft->y += racketControls.LeftRacketMov * SPEED;
+      goto COMPUTE_RIGHT_RACKET;
+    }
+    racketLeft->y += racketControls.LeftRacketMov * SPEED;
+  }
+  else 
+  {
+    if (racketControls.LeftRacketMov < 0)
+      racketLeft->y += racketControls.LeftRacketMov * SPEED;
+  }
+ 
+  COMPUTE_RIGHT_RACKET:
+  // right racket
+  if (!(racketRight->y > borderY - racketRight->height))
+  {
+    if ((racketRight->y < 0))
+    {
+      if (racketControls.RightRacketMov > 0)
+        racketRight->y += racketControls.RightRacketMov * SPEED;
+      return;
+    }
+    racketRight->y += racketControls.RightRacketMov * SPEED;
+  }
+  else 
+  {
+    if (racketControls.RightRacketMov < 0)
+      racketRight->y += racketControls.RightRacketMov * SPEED;
+  }
 }

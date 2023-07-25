@@ -25,4 +25,4 @@ typedef struct Controls
 #define RIGHT_RACKET_MOV_UP KEY_COMMA
 #define RIGHT_RACKET_MOV_DOWN KEY_PERIOD
 
-void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight);
+void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight, int borderY);

@@ -60,7 +60,7 @@ int main(void)
       DrawRectangleRec(ballShape, RAYWHITE);
       // update stuff on the screen
       UpdateBallPos(&gameball);
-      UpdateRackets(&racketLeft, &racketRight);
+      UpdateRackets(&racketLeft, &racketRight, winHeight);
     }
     EndDrawing();
   }
