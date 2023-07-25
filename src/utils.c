@@ -1,11 +1,11 @@
 #include <stdlib.h>
-#include <stdio.h>
+#include <stdint.h>
 #include <raylib.h>
 #include "utils.h"
 
 void UpdateBallPos(GameBall *gameball)
 {
-  const int SPEED = 5;
+  const uint8_t SPEED = 5;
   int diffY = SPEED;
   int diffX = SPEED;
 
@@ -66,7 +66,7 @@ Controls UpdateControls()
 
 void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight)
 {
-  const int SPEED = 7;
+  const uint8_t SPEED = 7;
   Controls racketControls = UpdateControls();
 
   racketLeft->y += racketControls.LeftRacketMov * SPEED;
