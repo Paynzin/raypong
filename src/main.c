@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include <raylib.h>
 #include "utils.h"
 
@@ -50,17 +51,18 @@ int main(void)
   // the game's main loop
   while (!WindowShouldClose()) 
   {
+    // update stuff on the screen
+    UpdateRackets(&racketLeft, &racketRight, winHeight);
+    UpdateBallPos(&gameball, racketLeft, racketRight);
+    // start drawing things
     BeginDrawing();
     {
       ClearBackground(BLACK);
+      // draw the ball
+      DrawRectangleRec(ballShape, RAYWHITE);
       // draw the rackets
       DrawRectangleRec(racketLeft, RAYWHITE);
       DrawRectangleRec(racketRight, RAYWHITE);
-      // draw the ball
-      DrawRectangleRec(ballShape, RAYWHITE);
-      // update stuff on the screen
-      UpdateBallPos(&gameball);
-      UpdateRackets(&racketLeft, &racketRight, winHeight);
     }
     EndDrawing();
   }

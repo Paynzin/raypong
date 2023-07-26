@@ -10,7 +10,7 @@ typedef struct GameBall
   Rectangle *ballShape;
 } GameBall;
 
-void UpdateBallPos(GameBall *gameball);
+void UpdateBallPos(GameBall *gameball, Rectangle racketLeft, Rectangle racketRight);
 
 typedef struct Controls
 {

@@ -3,23 +3,23 @@
 #include <raylib.h>
 #include "utils.h"
 
-void UpdateBallPos(GameBall *gameball)
+void UpdateBallPos(GameBall *gameball, Rectangle racketLeft, Rectangle racketRight)
 {
-  const uint8_t SPEED = 5;
+  const uint8_t SPEED = 1;
   int diffY = SPEED;
   int diffX = SPEED;
-
+  
   // X axis
   if (gameball->IsDiffXNegative)
   {
-    if (gameball->ballShape->x >= 0)
+    if (gameball->ballShape->x > 0 && !(CheckCollisionRecs(*gameball->ballShape, racketLeft)))
       diffX = -diffX;
     else
       gameball->IsDiffXNegative = false;
   }
   else 
   {
-    if (!(gameball->ballShape->x <= gameball->borderX - gameball->ballShape->width))
+    if (gameball->ballShape->x >= gameball->borderX - gameball->ballShape->width || CheckCollisionRecs(*gameball->ballShape, racketRight))
     {
       diffX = -diffX;
       gameball->IsDiffXNegative = true;
@@ -29,14 +29,14 @@ void UpdateBallPos(GameBall *gameball)
   // Y axis
   if (gameball->IsDiffYNegative)
   {
-    if (gameball->ballShape->y >= 0)
+    if (gameball->ballShape->y > 0)
       diffY = -diffY;
     else
       gameball->IsDiffYNegative = false;
   }
   else 
   {
-    if (!(gameball->ballShape->y <= gameball->borderY - gameball->ballShape->height))
+    if (gameball->ballShape->y >= gameball->borderY - gameball->ballShape->height)
     {
       diffY = -diffY;
       gameball->IsDiffYNegative = true;
