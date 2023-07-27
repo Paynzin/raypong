@@ -26,3 +26,11 @@ typedef struct Controls
 #define RIGHT_RACKET_MOV_DOWN KEY_PERIOD
 
 void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight, int borderY);
+
+typedef struct Scoreboard
+{
+  int8_t Player1Score;
+  int8_t Player2Score;
+} Scoreboard;
+
+void UpdateScore(Scoreboard *scoreboard, Rectangle ballShape, int borderX);

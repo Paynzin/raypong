@@ -1,4 +1,3 @@
-#include<stdio.h>
 #include <raylib.h>
 #include "utils.h"
 
@@ -48,16 +47,25 @@ int main(void)
   racketRight.x = winWidth - racketRight.width; 
   racketRight.y = winHeight / 2;
 
+  // create the scoreboard
+  Scoreboard scoreboard;
+  scoreboard.Player1Score = 0;
+  scoreboard.Player2Score = 0;
+
   // the game's main loop
   while (!WindowShouldClose()) 
   {
     // update stuff on the screen
+    UpdateScore(&scoreboard, ballShape, winWidth);
     UpdateRackets(&racketLeft, &racketRight, winHeight);
     UpdateBallPos(&gameball, racketLeft, racketRight);
     // start drawing things
     BeginDrawing();
     {
       ClearBackground(BLACK);
+      // draw the score
+      char *score = TextFormat("%02i | %02i", scoreboard.Player1Score, scoreboard.Player2Score);
+      DrawText(score, winWidth / 2 - (MeasureText(score, 40) / 2), (int)(winHeight * 0.3), 40, RAYWHITE);
       // draw the ball
       DrawRectangleRec(ballShape, RAYWHITE);
       // draw the rackets

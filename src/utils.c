@@ -5,7 +5,7 @@
 
 void UpdateBallPos(GameBall *gameball, Rectangle racketLeft, Rectangle racketRight)
 {
-  const uint8_t SPEED = 1;
+  const uint8_t SPEED = 5;
   int diffY = SPEED;
   int diffX = SPEED;
   
@@ -103,4 +103,13 @@ void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight, int borderY)
     if (racketControls.RightRacketMov < 0)
       racketRight->y += racketControls.RightRacketMov * SPEED;
   }
+}
+
+void UpdateScore(Scoreboard *scoreboard, Rectangle ballShape, int borderX)
+{
+  if (ballShape.x >= borderX - ballShape.width)
+    scoreboard->Player1Score++;
+
+  if (ballShape.x <= 0)
+    scoreboard->Player2Score++;
 }
