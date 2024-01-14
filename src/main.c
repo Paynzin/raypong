@@ -1,7 +1,14 @@
+#ifdef _WIN32
+#include <windef.h>
+#endif
 #include <raylib.h>
 #include "utils.h"
 
+#ifdef _WIN32
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+#else
 int main(void)
+#endif
 {
   const char *winTitle = "raypong - By Payn";
   
@@ -10,7 +17,8 @@ int main(void)
 
   const int winWidth = GetScreenWidth() / 2;
   const int winHeight = GetScreenHeight() / 2;
-
+  
+  SetWindowPosition(winWidth - (winWidth / 2), winHeight - (winHeight / 2));
   SetWindowSize(winWidth, winHeight);
  
   // creates the ball

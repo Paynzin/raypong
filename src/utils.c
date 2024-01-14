@@ -72,7 +72,7 @@ void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight, int borderY)
   // left racket
   if (!(racketLeft->y > borderY - racketLeft->height))
   {
-    if ((racketLeft->y < 0))
+    if (racketLeft->y < 0)
     {
       if (racketControls.LeftRacketMov > 0)
         racketLeft->y += racketControls.LeftRacketMov * SPEED;
@@ -90,7 +90,7 @@ void UpdateRackets(Rectangle *racketLeft, Rectangle *racketRight, int borderY)
   // right racket
   if (!(racketRight->y > borderY - racketRight->height))
   {
-    if ((racketRight->y < 0))
+    if (racketRight->y < 0)
     {
       if (racketControls.RightRacketMov > 0)
         racketRight->y += racketControls.RightRacketMov * SPEED;
